@@ -15,7 +15,7 @@
 package licenseclassifier
 
 import (
-	"github.com/google/licenseclassifier/licenses"
+	"github.com/tq-systems/em-lib-licenseclassifier/licenses"
 )
 
 const (

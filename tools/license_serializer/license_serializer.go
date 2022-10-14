@@ -27,8 +27,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/google/licenseclassifier"
-	"github.com/google/licenseclassifier/serializer"
+	"github.com/tq-systems/em-lib-licenseclassifier"
+	"github.com/tq-systems/em-lib-licenseclassifier/serializer"
 )
 
 var (
