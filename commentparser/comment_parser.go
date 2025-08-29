@@ -23,7 +23,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/google/licenseclassifier/commentparser/language"
+	"github.com/tq-systems/em-lib-licenseclassifier/commentparser/language"
 )
 
 const (

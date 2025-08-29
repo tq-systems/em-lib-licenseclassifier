@@ -30,8 +30,8 @@ import (
 	"sync"
 	"unicode"
 
-	"github.com/google/licenseclassifier/stringclassifier"
-	"github.com/google/licenseclassifier/stringclassifier/searchset"
+	"github.com/tq-systems/em-lib-licenseclassifier/stringclassifier"
+	"github.com/tq-systems/em-lib-licenseclassifier/stringclassifier/searchset"
 )
 
 // DefaultConfidenceThreshold is the minimum confidence percentage we're willing to accept in order
@@ -175,7 +175,13 @@ func (c *License) MultipleMatch(contents string, includeHeaders bool) stringclas
 			continue
 		}
 
-		v.Name = strings.TrimSuffix(v.Name, ".header")
+		licenseName := strings.TrimSuffix(v.Name, ".header")
+		if licenseName == "EPL-2.0" && strings.Contains(contents, "Eclipse Distribution License v1.0") {
+			v.Name = "EDL-1.0"
+		} else {
+			v.Name = licenseName
+		}
+
 		if re, ok := forbiddenRegexps[v.Name]; ok && !re.MatchString(norm) {
 			continue
 		}

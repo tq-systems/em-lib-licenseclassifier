@@ -20,9 +20,9 @@
 // exact match and 0.0 indicating a complete mismatch. The results are sorted
 // by confidence level.
 //
-//   $ identifylicense LICENSE1 LICENSE2
-//   LICENSE2: MIT (confidence: 0.987)
-//   LICENSE1: BSD-2-Clause (confidence: 0.833)
+//	$ identifylicense LICENSE1 LICENSE2
+//	LICENSE2: MIT (confidence: 0.987)
+//	LICENSE1: BSD-2-Clause (confidence: 0.833)
 package main
 
 import (
@@ -35,8 +35,8 @@ import (
 	"sort"
 	"time"
 
-	"github.com/google/licenseclassifier"
-	"github.com/google/licenseclassifier/tools/identify_license/backend"
+	"github.com/tq-systems/em-lib-licenseclassifier"
+	"github.com/tq-systems/em-lib-licenseclassifier/tools/identify_license/backend"
 )
 
 var (

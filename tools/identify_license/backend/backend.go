@@ -20,13 +20,14 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"strings"
 	"sync"
 	"time"
 
-	"github.com/google/licenseclassifier"
-	"github.com/google/licenseclassifier/commentparser"
-	"github.com/google/licenseclassifier/commentparser/language"
-	"github.com/google/licenseclassifier/tools/identify_license/results"
+	"github.com/tq-systems/em-lib-licenseclassifier"
+	"github.com/tq-systems/em-lib-licenseclassifier/commentparser"
+	"github.com/tq-systems/em-lib-licenseclassifier/commentparser/language"
+	"github.com/tq-systems/em-lib-licenseclassifier/tools/identify_license/results"
 )
 
 // ClassifierInterface is the interface each backend must implement.
@@ -71,7 +72,6 @@ func (b *ClassifierBackend) ClassifyLicenses(filenames []string, headers bool) (
 // ClassifyLicensesWithContext runs the license classifier over the given file;
 // ensure that it will respect the timeout and cancelation in the provided context.
 func (b *ClassifierBackend) ClassifyLicensesWithContext(ctx context.Context, filenames []string, headers bool) (errors []error) {
-
 	files := make(chan string, len(filenames))
 	for _, f := range filenames {
 		files <- f
@@ -132,15 +132,28 @@ func (b *ClassifierBackend) classifyLicense(filename string, headers bool) error
 	}
 
 	matchLoop := func(contents string) {
+		log.Printf("classifyLicense: contents=%v, headers=%v", contents, headers)
 		for _, m := range b.classifier.MultipleMatch(contents, headers) {
 			b.mu.Lock()
-			b.results = append(b.results, &results.LicenseType{
-				Filename:   filename,
-				Name:       m.Name,
-				Confidence: m.Confidence,
-				Offset:     m.Offset,
-				Extent:     m.Extent,
-			})
+			if m.Name == "EPL-2.0" && strings.Contains(contents, "Eclipse Distribution License v1.0") {
+				b.results = append(b.results, &results.LicenseType{
+					Filename:   filename,
+					Name:       "EDL-1.0",
+					Confidence: 1,
+					Offset:     0,
+					Extent:     0,
+				})
+				log.Printf("use EDL-1.0 license")
+			} else {
+				b.results = append(b.results, &results.LicenseType{
+					Filename:   filename,
+					Name:       m.Name,
+					Confidence: m.Confidence,
+					Offset:     m.Offset,
+					Extent:     m.Extent,
+				})
+				log.Printf("classifyLicense:matchLoop: Filename=%v, Name=%v, Confidence=%v, Offset=%v, Extent=%v", filename, m.Name, m.Confidence, m.Offset, m.Extent)
+			}
 			b.mu.Unlock()
 		}
 	}

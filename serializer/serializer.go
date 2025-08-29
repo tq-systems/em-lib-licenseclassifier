@@ -26,8 +26,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/google/licenseclassifier"
-	"github.com/google/licenseclassifier/stringclassifier/searchset"
+	"github.com/tq-systems/em-lib-licenseclassifier"
+	"github.com/tq-systems/em-lib-licenseclassifier/stringclassifier/searchset"
 )
 
 // ArchiveLicenses takes all of the known license texts, normalizes them, then

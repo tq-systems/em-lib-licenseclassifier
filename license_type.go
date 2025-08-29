@@ -19,7 +19,7 @@ package licenseclassifier
 //   1. Add the canonical name to the list, and
 //   2. Categorize the license.
 
-import "github.com/google/licenseclassifier/internal/sets"
+import "github.com/tq-systems/em-lib-licenseclassifier/internal/sets"
 
 // Canonical names of the licenses.
 const (
@@ -51,6 +51,7 @@ const (
 	BSD3ClauseAttribution       = "BSD-3-Clause-Attribution"
 	BSD3ClauseClear             = "BSD-3-Clause-Clear"
 	BSD3ClauseLBNL              = "BSD-3-Clause-LBNL"
+	BSD3ClauseModbus            = "BSD-3-Clause-modbus"
 	BSD3Clause                  = "BSD-3-Clause"
 	BSD4Clause                  = "BSD-4-Clause"
 	BSD4ClauseUC                = "BSD-4-Clause-UC"
@@ -93,6 +94,7 @@ const (
 	CPAL10                      = "CPAL-1.0"
 	CPL10                       = "CPL-1.0"
 	eGenix                      = "eGenix"
+	EDL10                       = "EDL-1.0"
 	EPL10                       = "EPL-1.0"
 	EPL20                       = "EPL-2.0"
 	EUPL10                      = "EUPL-1.0"
@@ -156,6 +158,12 @@ const (
 	SISSL12                     = "SISSL-1.2"
 	SISSL                       = "SISSL"
 	Sleepycat                   = "Sleepycat"
+	TQSSLA102                   = "TQSSLAv1.0.2"
+	TQSSLA103                   = "TQSSLAv1.0.3"
+	TQSSLA104                   = "TQSSLAv1.0.4"
+	TQSCSLA101                  = "TQSCSLAv1.0.1"
+	TQSPSLA102                  = "TQSPSLAv1.0.2"
+	TQSPSLA103                  = "TQSPSLAv1.0.3"
 	UnicodeTOU                  = "Unicode-TOU"
 	UnicodeDFS2015              = "Unicode-DFS-2015"
 	UnicodeDFS2016              = "Unicode-DFS-2016"
@@ -194,26 +202,8 @@ var (
 		CCBYSA25,
 		CCBYSA30,
 		CCBYSA40,
-		GPL10,
-		GPL20,
-		GPL20withautoconfexception,
-		GPL20withbisonexception,
-		GPL20withclasspathexception,
-		GPL20withfontexception,
-		GPL20withGCCexception,
-		GPL30,
-		GPL30withautoconfexception,
-		GPL30withGCCexception,
-		LGPL20,
-		LGPL21,
-		LGPL30,
 		NPL10,
 		NPL11,
-		OSL10,
-		OSL11,
-		OSL20,
-		OSL21,
-		OSL30,
 		QPL10,
 		Sleepycat,
 	)
@@ -234,9 +224,6 @@ var (
 		EPL20,
 		FreeImage,
 		IPL10,
-		MPL10,
-		MPL11,
-		MPL20,
 		Ruby,
 	)
 
@@ -266,6 +253,7 @@ var (
 		BSD3ClauseAttribution,
 		BSD3ClauseClear,
 		BSD3ClauseLBNL,
+		BSD3ClauseModbus,
 		BSD3Clause,
 		BSD4Clause,
 		BSD4ClauseUC,
@@ -275,6 +263,7 @@ var (
 		CCBY25,
 		CCBY30,
 		CCBY40,
+		EDL10,
 		FTL,
 		ISC,
 		ImageMagick,
@@ -283,7 +272,6 @@ var (
 		LinuxOpenIB,
 		LPL102,
 		LPL10,
-		MSPL,
 		MIT,
 		NCSA,
 		OpenSSL,
@@ -296,6 +284,12 @@ var (
 		SGIB10,
 		SGIB11,
 		SGIB20,
+		TQSSLA102,
+		TQSSLA103,
+		TQSSLA104,
+		TQSCSLA101,
+		TQSPSLA102,
+		TQSPSLA103,
 		UnicodeDFS2015,
 		UnicodeDFS2016,
 		UnicodeTOU,
@@ -357,9 +351,33 @@ var (
 		CCBYNCSA30,
 		CCBYNCSA40,
 		CommonsClause,
+		EPL10,
+		EPL20,
 		Facebook2Clause,
 		Facebook3Clause,
 		FacebookExamples,
+		GPL10,
+		GPL20,
+		GPL20withautoconfexception,
+		GPL20withbisonexception,
+		GPL20withclasspathexception,
+		GPL20withfontexception,
+		GPL20withGCCexception,
+		GPL30,
+		GPL30withautoconfexception,
+		GPL30withGCCexception,
+		LGPL20,
+		LGPL21,
+		LGPL30,
+		MPL10,
+		MPL11,
+		MPL20,
+		MSPL,
+		OSL10,
+		OSL11,
+		OSL20,
+		OSL21,
+		OSL30,
 		WTFPL,
 	)
 

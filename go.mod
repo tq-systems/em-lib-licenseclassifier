@@ -1,9 +1,8 @@
-module github.com/google/licenseclassifier
+module github.com/tq-systems/em-lib-licenseclassifier
 
 go 1.16
 
 require (
-	github.com/google/go-cmp v0.2.0
-	github.com/sergi/go-diff v1.0.0
-	github.com/stretchr/testify v1.3.0 // indirect
+	github.com/google/go-cmp v0.5.2
+	github.com/sergi/go-diff v1.1.0
 )
