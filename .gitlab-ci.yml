@@ -1,9 +1,7 @@
 include:
 - project: tq-em/public/build/base
   file: ci/include.yml
-  ref: main
+  ref: v4.0.1
 
 gitleaks:
   extends: .gitleaks
-
-
